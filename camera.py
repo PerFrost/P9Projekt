@@ -7,7 +7,7 @@ class Singleton(object):
         return cls.instance
 
 class Camera(Singleton):
-    def __init__(self, path = 1):
+    def __init__(self, path = 0):
         self.cap = cv2.VideoCapture(path)
 
     def __del__(self):
