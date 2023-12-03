@@ -20,7 +20,7 @@ class MMPoseStrategy(ModelStrategy):
             result = next(results)
 
             try:
-                return result['predictions'][0][0]['keypoints']
+                return "mmpose", result['predictions'][0][0]['keypoints']
             except:
                 return []
             # input()

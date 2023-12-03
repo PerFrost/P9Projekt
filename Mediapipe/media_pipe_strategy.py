@@ -36,7 +36,7 @@ class MediaPipeStrategy(ModelStrategy):
             img_path = cv2.cvtColor(img_path, cv2.COLOR_RGB2BGR)
             img_path = mp.Image(mp.ImageFormat.SRGB, data=img_path)
             detection_result = self.detector.detect(img_path)
-            return detection_result
+            return "mediapipe", detection_result.hand_landmarks
 
         except IOError:
             print("Something went wrong")
