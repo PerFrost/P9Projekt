@@ -15,9 +15,9 @@ if __name__ == '__main__':
     # g.createWindow()
 
     cam = Camera()
-    mpstrat = MediaPipeStrategy()
-    #mmstrat = MMPoseStrategy()
-    model = ModelContext(mpstrat)
+    # mpstrat = MediaPipeStrategy()
+    mmstrat = MMPoseStrategy()
+    model = ModelContext(mmstrat)
     cmd = Commands()
     settings = Settings()
 

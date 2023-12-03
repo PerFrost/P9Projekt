@@ -134,10 +134,6 @@ class GUI:
 
         print(self.camera_var.get())
 
-
-        # Button(window_frame, text="Camera", command=self.root.destroy).grid(row=0, column=0)
-
-
     def show_calibration_settings(self):
         self.clear_window_frame()
         window_frame = self.window_frame

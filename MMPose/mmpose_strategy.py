@@ -22,7 +22,7 @@ class MMPoseStrategy(ModelStrategy):
             try:
                 return "mmpose", result['predictions'][0][0]['keypoints']
             except:
-                return []
+                return "mmpose", []
             # input()
 
         except IOError:
