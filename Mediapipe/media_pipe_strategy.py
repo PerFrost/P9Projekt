@@ -10,7 +10,7 @@ from model_strategy import ModelStrategy
 class MediaPipeStrategy(ModelStrategy):
 
     def __init__(self):
-        self.base_options = python.BaseOptions(model_asset_path='hand_landmarker.task')
+        self.base_options = python.BaseOptions(model_asset_path='Mediapipe/hand_landmarker.task')
         self.options = vision.HandLandmarkerOptions(base_options=self.base_options,
                                                num_hands=1)
         self.detector = vision.HandLandmarker.create_from_options(self.options)

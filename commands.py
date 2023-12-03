@@ -9,6 +9,14 @@ class Commands:
         except:
             print("hand outside screen")
 
+    def move_laser_pointer2(self, x_coord, y_coord):
+        try:
+            screen_size = pyautogui.size()
+            pyautogui.moveTo(screen_size.width - x_coord, y_coord)
+
+        except:
+            print("hand outside screen")
+
     def next_slide(self):
         pyautogui.press('right')
 
