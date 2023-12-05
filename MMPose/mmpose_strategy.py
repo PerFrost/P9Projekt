@@ -15,7 +15,7 @@ class MMPoseStrategy(ModelStrategy):
     def evaluate(self, frame):
         try:
             img_path = frame
-            results = self.model(img_path)#, return_vis=True)
+            results = self.model(img_path) #, return_vis=True)
 
             result = next(results)
 

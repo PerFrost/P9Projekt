@@ -6,7 +6,7 @@ class MediaPipeStrategy(ModelStrategy):
 
     def __init__(self):
         mphands = mp.solutions.hands
-        self.detector = mphands.Hands()
+        self.detector = mphands.Hands(max_num_hands=2)
 
     def evaluate(self, frame):
         try:

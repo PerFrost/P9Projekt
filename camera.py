@@ -18,6 +18,11 @@ class Camera(Singleton):
         self.cap = cv2.VideoCapture(path)
         return self
 
+    def change_resolution(self, width, height):
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+        return self
+
     def getFrame(self):
         if not self.cap.isOpened():
             raise Exception("Camera could not be opened")
