@@ -17,16 +17,17 @@ if __name__ == '__main__':
         strategy = MediaPipeStrategy() if settings.model == "MediaPipe" else MMPoseStrategy()
         model = ModelContext(strategy)
         cmd = Commands()
+        landmark_fact = LandmarkFactory(settings)
 
         while True:
             frame = cam.getFrame()
             if frame is not None:
                 hand_landmarks_list = model.strategy.evaluate(frame)
-                landmark_fact = LandmarkFactory(hand_landmarks_list, settings).create_landmarks()
+                landmarks = landmark_fact.create_landmarks(hand_landmarks_list)
 
 
-                if landmark_fact and len(landmark_fact) > 8:
-                    tip_of_index_finger = landmark_fact[8]
+                if landmarks and len(landmarks) > 8:
+                    tip_of_index_finger = landmarks[8]
 
                     x = tip_of_index_finger[0]
                     y = tip_of_index_finger[1]

@@ -19,14 +19,11 @@ class MMPoseStrategy(ModelStrategy):
 
             result = next(results)
 
-            try:
-                return "mmpose", result['predictions'][0][0]['keypoints']
-            except:
-                return "mmpose", []
+            return result['predictions'][0][0]['keypoints']
             # input()
 
-        except IOError:
-            print("IOError")
+        except:
+            return []
 
     def visualize(self, result):
         img3 = cv2.cvtColor(result['visualization'][0], cv2.COLOR_RGB2BGR)
