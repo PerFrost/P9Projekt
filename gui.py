@@ -41,7 +41,7 @@ class GUI:
         self.monitor_var = StringVar()
         self.monitor_var.set(self.monitor_options[0])
 
-        self.model_options = ["MediaPipe", "MMPose"]
+        self.model_options = ["MediaPipe", "MMPose", "MMPose2"]
         self.model_var = StringVar()
         self.model_var.set(self.model_options[0])
 
@@ -49,12 +49,28 @@ class GUI:
         self.camera.change_camera(self.camera_var.get())
         self.camera.change_resolution(*[int(x) for x in self.camera_resolution_var.get().split("x")])
 
-
     def createWindow(self):
         self.createSettingsFrame()
         self.createWindowFrame()
         self.root.mainloop()
-        return Settings(self.camera_var.get(), self.calibration_points, self.camera_resolution_var.get(), self.monitor_var.get(), self.model_var.get())
+        return Settings(self.camera_var.get(), self._calculateCalibrationPoints(), self.camera_resolution_var.get(), self._getMonitor(), self.model_var.get())
+
+    def _getMonitor(self):
+        monitors = screeninfo.get_monitors()
+        monitors_string_list = [str(x) for x in monitors]
+        index = monitors_string_list.index(self.monitor_var.get())
+
+        return monitors[index]
+
+    def _calculateCalibrationPoints(self):
+        if len(self.calibration_points) == 4:
+            xs = [point["x"] for point in self.calibration_points]
+            ys = [point["y"] for point in self.calibration_points]
+
+            return {"x_max": max(xs), "x_min": min(xs), "y_max": max(ys), "y_min": min(ys)}
+        else:
+            max_x, max_y = self.camera_resolution_var.get().split("x")
+            return {"x_max": int(max_x), "x_min": 0, "y_max": int(max_y), "y_min": 0}
 
     def createSettingsFrame(self):
         settings_frame = self.settings_frame

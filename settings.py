@@ -1,9 +1,10 @@
 import screeninfo
-class Settings:
 
+
+class Settings:
     def __init__(self):
         self.camera_index = -1
-        self.calibration_points = []
+        self.calibration_points = {}
         self.camera_resolution = "640x480"
         self.monitor = str(screeninfo.get_monitors()[0])
         self.model = "MediaPipe"

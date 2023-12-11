@@ -1,9 +1,13 @@
 import pyautogui
 
 class Commands:
-    def move_laser_pointer(self, x_coord, y_coord):
+    def __init__(self, settings):
+        self.settings = settings
+
+    def move_laser_pointer(self, landmarks):
         try:
-            pyautogui.moveTo(x_coord, y_coord)
+            x, y = landmarks
+            pyautogui.moveTo(self.settings.monitor.x + x, self.settings.monitor.y + y)
 
         except:
             print("hand outside screen")
