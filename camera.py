@@ -1,11 +1,6 @@
 import cv2
-
-class Singleton(object):
-    def __new__(cls):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(Singleton, cls).__new__(cls)
-        return cls.instance
-
+from singleton import Singleton
+from settings import Settings
 class Camera(Singleton):
     def __init__(self, path = 0):
         self.cap = cv2.VideoCapture(path)
@@ -29,6 +24,7 @@ class Camera(Singleton):
 
         try:
             success, frame = self.cap.read()
+            frame = cv2.flip(frame, 1)
             frame.flags.writeable = False
             return frame
 
