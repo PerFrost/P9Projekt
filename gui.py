@@ -53,7 +53,7 @@ class GUI:
         self.createSettingsFrame()
         self.createWindowFrame()
         self.root.mainloop()
-        return Settings().initSettings(self.camera_var.get(), self._calculateCalibrationPoints(), self.camera_resolution_var.get(), self._getMonitor(), self.model_var.get())
+        return Settings().setSettings(self.camera_var.get(), self._calculateCalibrationPoints(), self.camera_resolution_var.get(), self._getMonitor(), self.model_var.get())
 
     def _getMonitor(self):
         monitors = screeninfo.get_monitors()

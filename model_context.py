@@ -1,5 +1,6 @@
 from model_strategy import ModelStrategy
 
+
 class ModelContext:
     def __init__(self, strategy: ModelStrategy) -> None:
         self.strategy = strategy
@@ -9,4 +10,3 @@ class ModelContext:
 
     def evaluate(self, frame):
         return self.strategy.evaluate(frame)
-

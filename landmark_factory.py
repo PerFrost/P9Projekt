@@ -9,48 +9,41 @@ class LandmarkFactory:
     def create_landmarks_for_screen_res(self, landmark_data):
         if self.set.model == "MediaPipe":
             landmark_data = [[self.set.monitor.width - (landmark.x * self.set.monitor.width),
-                               landmark.y * self.set.monitor.height] for landmark in landmark_data]
+                              landmark.y * self.set.monitor.height] for landmark in landmark_data]
 
         elif self.set.model == "MMPose" or self.set.model == "MMPose2":
-            cameraXRes, cameraYRes = self.set.getCameraRes()
+            cam_res_x, cam_res_y = self.set.getCameraRes()
 
-            landmark_data = [[self.set.monitor.width - (landmark[0] / cameraXRes) * self.set.monitor.width,
-                               (landmark[1] / cameraYRes) * self.set.monitor.height] for landmark in landmark_data]
+            landmark_data = [[self.set.monitor.width - (landmark[0] / cam_res_x) * self.set.monitor.width,
+                              (landmark[1] / cam_res_y) * self.set.monitor.height] for landmark in landmark_data]
 
         return landmark_data
 
     def create_landmarks_for_screen_norm(self, landmark_data):
-        if self.set.model == "MediaPipe":
+        if landmark_data:
+            if self.set.model == "MediaPipe":
+                cam_res_x, cam_res_y = self.set.getCameraRes()
+                landmark_data = [[landmark.x * cam_res_x,
+                                  landmark.y * cam_res_y] for landmark in landmark_data]
 
-            if landmark_data:
-                cameraXRes, cameraYRes = self.set.getCameraRes()
-                landmark_data = [[landmark.x * cameraXRes,
-                                  landmark.y * cameraYRes] for landmark in landmark_data]
+            elif self.set.model == "MMPose" or self.set.model == "MMPose2":
+                landmark_data = [[landmark[0], landmark[1]] for landmark in landmark_data]
 
-                base_x, base_y = landmark_data[0]
+            base_x, base_y = landmark_data[0]
 
-                landmark_data = [[landmark[0] - base_x,
-                                  landmark[1] - base_y] for landmark in landmark_data]
+            landmark_data = [[landmark[0] - base_x, landmark[1] - base_y] for landmark in landmark_data]
+            landmark_data = [x for xs in landmark_data for x in xs]
 
-                landmark_data = [x for xs in landmark_data for x in xs]
+            max_value = max([abs(x) for x in landmark_data])
 
-                max_value = max([abs(x) for x in landmark_data])
-
-                landmark_data = [x / max_value for x in landmark_data]
-
-
-        elif self.set.model == "MMPose" or self.set.model == "MMPose2":
-            cameraXRes, cameraYRes = self.set.getCameraRes()
-
-            landmark_data = [[self.set.monitor.width - (landmark[0] / cameraXRes) * self.set.monitor.width,
-                              (landmark[1] / cameraYRes) * self.set.monitor.height] for landmark in landmark_data]
+            landmark_data = [x / max_value for x in landmark_data]
 
         return landmark_data
 
     def create_landmarks_for_camera_res(self, landmark_data):
         if self.set.model == "MediaPipe":
-            cameraXRes, cameraYRes = self.set.getCameraRes()
-            landmark_data = [[landmark.x * cameraXRes, landmark.y * cameraYRes] for landmark in landmark_data]
+            cam_res_x, cam_res_y = self.set.getCameraRes()
+            landmark_data = [[landmark.x * cam_res_x, landmark.y * cam_res_y] for landmark in landmark_data]
 
         elif self.set.model == "MMPose" or self.set.model == "MMPose2":
             landmark_data = [[landmark[0], landmark[1]] for landmark in landmark_data]

@@ -1,14 +1,13 @@
 from model_context import ModelContext
 from Mediapipe.media_pipe_strategy import MediaPipeStrategy
-#from MMPose.mmpose_strategy import MMPoseStrategy
-#from MMPose.mmpose_strategy2 import MMPoseStrategy2
+from MMPose.mmpose_strategy import MMPoseStrategy
+from MMPose.mmpose_strategy2 import MMPoseStrategy2
 from camera import Camera
 from commands import Commands
 from landmark_factory import LandmarkFactory
 from gui import GUI
 from pose_recognizer import PoseRecognizer
 from pose_selector import PoseSelector
-
 
 if __name__ == '__main__':
     while True:
@@ -35,10 +34,3 @@ if __name__ == '__main__':
                 if hand_landmarks_list2:
                     index = pose_recog(hand_landmarks_list2)
                     pose_select.select_pose(index, landmarks_calibrated)
-
-
-                #landmarks_cam = landmark_fact.create_landmarks_for_camera_res(hand_landmarks_list)
-                #landmarks_screen = landmark_fact.create_landmarks_for_screen_res(hand_landmarks_list)
-
-                #if landmarks_calibrated:
-                #    cmd.move_laser_pointer(landmarks_calibrated)

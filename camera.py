@@ -25,6 +25,7 @@ class Camera(Singleton):
         try:
             success, frame = self.cap.read()
             frame = cv2.flip(frame, 1)
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame.flags.writeable = False
             return frame
 
