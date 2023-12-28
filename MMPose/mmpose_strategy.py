@@ -9,6 +9,7 @@ class MMPoseStrategy(ModelStrategy):
 
         config_file = 'MMPose/mmpose/configs/hand_2d_keypoint/rtmpose/hand5/rtmpose-m_8xb256-210e_hand5-256x256.py'
         checkpoint_file = 'MMPose/mmpose/data/rtmpose-m_simcc-hand5_pt-aic-coco_210e-256x256-74fb594_20230320.pth'
+
         self.model = MMPoseInferencer(pose2d=config_file, pose2d_weights=checkpoint_file,
                                  device='cpu')
 

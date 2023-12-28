@@ -41,7 +41,7 @@ class GUI:
         self.monitor_var = StringVar()
         self.monitor_var.set(self.monitor_options[0])
 
-        self.model_options = ["MediaPipe", "MMPose", "MMPose2"]
+        self.model_options = ["MediaPipe", "MMPose"]
         self.model_var = StringVar()
         self.model_var.set(self.model_options[0])
 

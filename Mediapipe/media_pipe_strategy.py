@@ -1,7 +1,5 @@
 import mediapipe as mp
-import cv2
 from model_strategy import ModelStrategy
-import copy
 
 class MediaPipeStrategy(ModelStrategy):
 

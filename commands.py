@@ -9,11 +9,14 @@ class Commands:
         print(landmarks)
         try:
             x, y = landmarks
-            pyautogui.moveTo(self.settings.monitor.x + x, self.settings.monitor.y + y)
+            pyautogui.moveTo(self.settings.monitor.x + (self.settings.monitor.width - x), self.settings.monitor.y + y)
             print("Pointing")
 
         except:
             print("hand outside screen")
+
+    def toggle_laser_pointer(self):
+        pyautogui.hotkey('ctrl', 'l')
 
     def next_slide(self):
         pyautogui.press('right')

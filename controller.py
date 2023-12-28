@@ -1,7 +1,6 @@
 from model_context import ModelContext
 from Mediapipe.media_pipe_strategy import MediaPipeStrategy
 from MMPose.mmpose_strategy import MMPoseStrategy
-from MMPose.mmpose_strategy2 import MMPoseStrategy2
 from camera import Camera
 from commands import Commands
 from landmark_factory import LandmarkFactory
@@ -16,7 +15,7 @@ if __name__ == '__main__':
 
         cam = Camera()
 
-        strategy = MediaPipeStrategy() if settings.model == "MediaPipe" else MMPoseStrategy() if settings.model == "MMPose" else MMPoseStrategy2()
+        strategy = MediaPipeStrategy() if settings.model == "MediaPipe" else MMPoseStrategy()
         model = ModelContext(strategy)
         cmd = Commands()
         landmark_fact = LandmarkFactory()
