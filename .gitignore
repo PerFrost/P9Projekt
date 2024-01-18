@@ -1,3 +1,7 @@
+hand_landmarker.task
+.idea
+MMPose/mmpose
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
